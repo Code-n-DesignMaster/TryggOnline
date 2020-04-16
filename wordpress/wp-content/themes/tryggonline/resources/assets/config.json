@@ -8,8 +8,8 @@
       "./scripts/customizer.js"
     ]
   },
-  "publicPath": "/app/themes/sage",
-  "devUrl": "http://example.test",
+  "publicPath": "/wp-content/themes/tryggonline",
+  "devUrl": "https://trygg.lc",
   "proxyUrl": "http://localhost:3000",
   "cacheBusting": "[name]_[hash:8]",
   "watch": [
