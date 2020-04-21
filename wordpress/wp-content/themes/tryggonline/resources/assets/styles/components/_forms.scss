@@ -17,3 +17,12 @@
   @extend .btn;
   @extend .btn-secondary;
 }
+
+/** login form **/
+form.login {
+  border: 1px solid #d3ced2;
+  padding: 20px;
+  margin: 2em 0;
+  text-align: left;
+  border-radius: 5px;
+}

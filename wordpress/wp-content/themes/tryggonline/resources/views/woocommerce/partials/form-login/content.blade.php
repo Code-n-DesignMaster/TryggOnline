@@ -28,7 +28,7 @@
 @if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) )
 <div class="container">
     <div class="row justify-content-center">
-        <form class="woocommerce-form woocommerce-form-login login" method="POST">
+        <form class="woocommerce-form woocommerce-form-login login col-5" method="post">
             @php do_action( 'woocommerce_login_form_start' ); @endphp
             <div class="form-group">
               {{-- <label for="username">Email address</label>
@@ -50,9 +50,9 @@
             </div>
             <button type="submit" class="my-2 btn btn-primary woocommerce-button button woocommerce-form-login__submit" name="login" value="{{ esc_attr_e( 'Log in', 'woocommerce' ) }}">{{ esc_html_e( 'Log in', 'woocommerce' ) }}</button>
             @php do_action( 'woocommerce_login_form_end' ); @endphp
-            <p class="woocommerce-LostPassword lost_password my-2">
+            <span class="woocommerce-LostPassword lost_password my-2">
                 <a href="{{ esc_url( wp_lostpassword_url() ) }}">{{ esc_html_e( 'Lost your password?', 'woocommerce' ) }}</a>
-            </p>
+            </span>
           </form>
         @endif
         </div>
@@ -63,64 +63,37 @@
 @if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) )
 <div class="container">
     <div class="row justify-content-center">
-        Registration form must be here ;)
+      <form method="post" class="col-6 woocommerce-form woocommerce-form-register register" {{ do_action( 'woocommerce_register_form_tag' ) }} >
+        @php do_action( 'woocommerce_register_form_start' ); @endphp
+        <div class="form-row">
+          <div class="form-group col-12">
+            <input type="text" placeholder="{{ esc_html_e( 'First Name', 'woocommerce' ) }}" class="form-control woocommerce-Input woocommerce-Input--text input-text" name="first_name" id="reg_first_name" value="{{ ( ! empty( $_POST['first_name'] ) ) ? esc_attr( wp_unslash( $_POST['first_name'] ) ) : '' }}" />
+          </div>
+          <div class="form-group col-12">
+            <input type="text" placeholder="{{ esc_html_e( 'Last Name', 'woocommerce' ) }}" class="form-control woocommerce-Input woocommerce-Input--text input-text" name="last_name" id="reg_last_name" value="{{ ( ! empty( $_POST['last_name'] ) ) ? esc_attr( wp_unslash( $_POST['last_name'] ) ) : '' }}" />
+          </div>
+          <div class="form-group col-12">
+            <input type="email" placeholder="{{ esc_html_e( 'Email', 'woocommerce' ) }}" class="form-control woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email" value="{{ ( ! empty( $_POST['email'] ) ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : '' }}" />
+          </div>
+          <div class="form-group col-12">
+            <input type="text" placeholder="{{ esc_html_e( 'User Name', 'woocommerce' ) }}" class="form-control woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" autocomplete="username" value="{{ ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : '' }}" />
+          </div>
+          <div class="form-group col-12">
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+          <div class="form-group col-12">
+            <input type="text" class="form-control" id="bankID" placeholder="BankID">
+          </div>
+        </div>
+        @php do_action( 'woocommerce_register_form' ); @endphp
+        @php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); @endphp
+        <button type="submit" class="btn btn-primary woocommerce-Button woocommerce-button button woocommerce-form-register__submit" name="register" value="{{ esc_attr_e( 'Register', 'woocommerce' ) }}">{{ esc_html_e( 'Register', 'woocommerce' ) }}</button>
+        @php do_action( 'woocommerce_register_form_end' ); @endphp
+      </form>
     </div>
 </div>
 @endif
 </div>
 </div>
-{{-- 
-@php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : @endphp
-
-	</div>
-
-	<div class="u-column2 col-2 col-6">
-
-		<form method="post" class="woocommerce-form woocommerce-form-register register" @php do_action( 'woocommerce_register_form_tag' ); @endphp >
-
-			@php do_action( 'woocommerce_register_form_start' ); @endphp
-
-			@php if ( 'no' === get_option( 'woocommerce_registration_generate_username' ) ) : @endphp
-
-				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_username">@php esc_html_e( 'Username', 'woocommerce' ); @endphp<span class="required">*</span></label>
-					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" autocomplete="username" value="@php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; @endphp" />@php // @codingStandardsIgnoreLine @endphp
-				</p>
-
-			@php endif; @endphp
-
-			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-				<label for="reg_email">@php esc_html_e( 'Email address', 'woocommerce' ); @endphp<span class="required">*</span></label>
-				<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="reg_email" autocomplete="email" value="@php echo ( ! empty( $_POST['email'] ) ) ? esc_attr( wp_unslash( $_POST['email'] ) ) : ''; @endphp" />@php // @codingStandardsIgnoreLine @endphp
-			</p>
-
-			@php if ( 'no' === get_option( 'woocommerce_registration_generate_password' ) ) : @endphp
-
-				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-					<label for="reg_password">@php esc_html_e( 'Password', 'woocommerce' ); @endphp<span class="required">*</span></label>
-					<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" />
-				</p>
-
-			@php else : @endphp
-
-				<p>@php esc_html_e( 'A password will be sent to your email address.', 'woocommerce' ); @endphp</p>
-
-			@php endif; @endphp
-
-			@php do_action( 'woocommerce_register_form' ); @endphp
-
-			<p class="woocommerce-FormRow form-row">
-				@php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); @endphp
-				<button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit" name="register" value="@php esc_attr_e( 'Register', 'woocommerce' ); @endphp">@php esc_html_e( 'Register', 'woocommerce' ); @endphp</button>
-			</p>
-
-			@php do_action( 'woocommerce_register_form_end' ); @endphp
-
-		</form>
-
-	</div>
-// </div> 
-</div>
-@php endif; @endphp --}}
 
 @php do_action( 'woocommerce_after_customer_login_form' ); @endphp
