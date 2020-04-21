@@ -1,0 +1,1 @@
+<?php \App\Controllers\Products\get_products(); ?>
