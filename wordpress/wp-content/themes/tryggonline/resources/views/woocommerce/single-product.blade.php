@@ -5,5 +5,4 @@
 		@php the_post() @endphp
 		@include('woocommerce.partials.single-product.content')
 	@endwhile
-	@php do_action('woocommerce_sidebar') @endphp
 @endsection

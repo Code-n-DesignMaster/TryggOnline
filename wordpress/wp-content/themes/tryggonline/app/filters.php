@@ -89,3 +89,18 @@ add_filter('comments_template', function ($comments_template) {
 
     return $comments_template;
 }, 100);
+
+/** removing view cart link after putting product in the cart **/
+add_filter( 'wc_add_to_cart_message_html', '__return_null' );
+
+/** change woocommerce account dashboard orders and items **/
+add_filter ( 'woocommerce_account_menu_items', function() {
+    $menuOrder = array(
+        'dashboard'          => __( 'Dashboard', 'woocommerce' ),
+        // 'orders'             => __( 'Orders', 'woocommerce' ),
+        'subscriptions'       => __( 'Subscriptions', 'woocommerce' ),
+        'edit-account'    	=> __( 'Account Details', 'woocommerce' ),
+        'customer-logout'    => __( 'Logout', 'woocommerce' ),
+    );
+    return $menuOrder;
+});
