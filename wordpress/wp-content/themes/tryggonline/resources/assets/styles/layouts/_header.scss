@@ -1,3 +1,8 @@
+/** change color for nav links **/
+.navbar li a {
+  color: #fff;
+}
+
 .banner .nav li {
   @extend .nav-item;
 }

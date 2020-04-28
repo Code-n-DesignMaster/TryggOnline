@@ -19,9 +19,8 @@
                     <form class="multisteps-form__form">
                       <!--single form panel-->
                       <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
-                        {{-- <h3 class="multisteps-form__title">Your User Info</h3> --}}
                         <div class="multisteps-form__content">
-                                @php echo do_shortcode('[products]'); @endphp
+                          @include('woocommerce.partials.archive-product.content')
                           <div class="button-row d-flex mt-4">
                             <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
                           </div>
@@ -29,25 +28,10 @@
                       </div>
                       <!--single form panel-->
                       <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
-                        {{-- <h3 class="multisteps-form__title">Your Order Info</h3> --}}
                         <div class="multisteps-form__content">
                           <div class="row">
-                            <div class="col-12 col-md-6 mt-4">
-                              <div class="card shadow-sm">
-                                <div class="card-body">
-                                  <h5 class="card-title">Item Title</h5>
-                                  <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-6 mt-4">
-                              <div class="card shadow-sm">
-                                <div class="card-body">
-                                  <h5 class="card-title">Item Title</h5>
-                                  <p class="card-text">Small and nice item description</p><a class="btn btn-primary" href="#" title="Item Link">Item Link</a>
-                                </div>
-                              </div>
-                            </div>
+                            @php echo do_shortcode('[woocommerce_checkout]'); @endphp
+                            {{-- @php echo  @endphp --}}
                           </div>
                           <div class="row">
                             <div class="button-row d-flex mt-4 col-12">

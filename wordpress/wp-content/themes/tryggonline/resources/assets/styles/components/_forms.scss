@@ -27,6 +27,17 @@ form.login {
   border-radius: 5px;
 }
 
+/** budge price **/
+.price-budge {
+  left: -1px;
+  top: -1px;
+  font-size: 18px;
+  background-color: #525ddc;
+  color: #fff;
+  border-radius: 0.3rem 0 0.3rem 0;
+  padding: 0 5px;
+}
+
 /** multistep form **/
 .multisteps-form__panel[data-animation="scaleIn"] {
   -webkit-transform: scale(0.9);

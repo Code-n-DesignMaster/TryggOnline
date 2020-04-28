@@ -16,12 +16,13 @@ class PageBecomeCustomer extends Controller
 
     public function __construct(){
         $this->chooseSubscriptionArray = array(
-            'status' => 'publish',
+                'post_type' => 'product',
+                'post_per_page' => '-1'
         );
         $this->bankID = new BankID();
         $this->currentURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $this->autostarttoken = bin2hex(openssl_random_pseudo_bytes(24));
-        $this->bankIdLink = 'bankid:///?autostarttoken='.$this->autostarttoken.'&redirect='.$this->currentURL.'';
+        $this->bankIdLink = 'https://app.bankid.com/?autostarttoken='.$this->autostarttoken.'&redirect='.$this->currentURL.'';
     }
 
     public function choose_subscription(){
@@ -39,7 +40,10 @@ class PageBecomeCustomer extends Controller
 
     public function loginWithBankID(){
         // echo '<pre>';
-        // print_r(wp_get_session_token());
+        // print_r($this->bankID->authenticate());
         // echo '</pre>';
+    }
+    public function get_subscr_products(){
+        return get_posts($this->chooseSubscriptionArray);
     }
 }
